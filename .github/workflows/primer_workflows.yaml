@@ -33,6 +33,7 @@ jobs:
       - name: jest test
         id: test 
         run: npm install jest && npm test
+        continue-on-error: true
       - name: Send email
         if: steps.test.outcome != 'success'
         run: echo "Test failed by Vicent"
