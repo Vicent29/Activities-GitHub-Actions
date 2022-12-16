@@ -32,3 +32,16 @@ jobs:
         uses: actions/checkout@v2
       - name: jest test
         run: npm install jest && npm test
+  environment_test_execution:
+    needs: [linter-execution, test-ejecution]
+    strategy:
+      matrix:
+        include:
+          - DESTINATION_PERSON: "2DAW"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hellow enviroment
+        uses: adeloyedeji/github-actions-hello@v1.0
+        with: 
+          who-to-greet: ${{matrix.DESTINATION_PERSON}}
+
